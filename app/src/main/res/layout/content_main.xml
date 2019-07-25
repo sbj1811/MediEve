@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".UI.MainActivity"
+    tools:context=".UI.MainList.MainActivity"
     tools:showIn="@layout/activity_main">
+
+    <include layout="@layout/user_card" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main"
@@ -14,7 +16,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginTop="@dimen/std_margin"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/user_card"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
