@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.stetho.Stetho;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sjani.medieve.Models.Event;
 import com.sjani.medieve.Models.User;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
     RecyclerView recyclerView;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.user_name)
     TextView userName;
     @BindView(R.id.user_address)
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        collapsingToolbarLayout.setStatusBarScrimColor(getResources().getColor(R.color.colorAccent));
         adapter = new ListAdapter(this);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -79,6 +84,12 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
         });
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> showAddEvent());
+
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build()
+        );
     }
 
     private void showAddEvent() {

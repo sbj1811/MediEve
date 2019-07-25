@@ -8,16 +8,16 @@
     tools:context=".UI.MainList.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <include layout="@layout/user_card" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/std_margin"
+        android:layout_marginBottom="@dimen/std_margin"
         android:clickable="true"
         android:focusable="true"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@id/user_card" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
