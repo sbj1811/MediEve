@@ -1,10 +1,6 @@
 package com.sjani.medieve.Utils;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.sjani.medieve.Data.EventDao;
 import com.sjani.medieve.Data.UserDao;
@@ -12,7 +8,6 @@ import com.sjani.medieve.Models.Event;
 import com.sjani.medieve.Models.User;
 import com.sjani.medieve.Models.UserEvents;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -27,11 +22,11 @@ import retrofit2.Response;
  */
 public class DataRepository {
     private static final String TAG = DataRepository.class.getSimpleName();
+    private static long eventDbSize = 0;
+    private static boolean gotUsers;
+    int userDbSize = 0;
     private EventDao eventDao;
     private UserDao userDao;
-    int userDbSize = 0;
-    private static  long eventDbSize = 0;
-    private static boolean gotUsers;
 
     public DataRepository(EventDao eventDao, UserDao userDao) {
         this.eventDao = eventDao;
@@ -39,15 +34,15 @@ public class DataRepository {
     }
 
     /**
-     * Gets Users and Event list from RestAPI
+     * Gets Users and Event list from RestAPI and stores into the database
      */
-    public void getEventsfromApi(){
+    public void getEventsfromApi() {
         ApiConnection.getApi().getEvents().enqueue(new Callback<UserEvents>() {
             @Override
             public void onResponse(Call<UserEvents> call, Response<UserEvents> response) {
-                UserEvents userEvents =  response.body();
+                UserEvents userEvents = response.body();
                 Observable.fromCallable(() -> {
-                    if(userEvents!=null) {
+                    if (userEvents != null) {
                         List<Event> eventList = userEvents.getEvents();
                         eventDao.clearTable();
                         User user = response.body().getUser();
@@ -73,10 +68,13 @@ public class DataRepository {
 
     /**
      * Gets List of Users from local SQLite database
+     *
      * @return LiveData of List of users
      */
     public LiveData<List<User>> getUserData() {
-        if(!gotUsers){ getEventsfromApi(); }
+        if (!gotUsers) {
+            getEventsfromApi();
+        }
         return userDao.getAllUsers();
     }
 
@@ -86,18 +84,19 @@ public class DataRepository {
 
     /**
      * Gets List of Events from local SQLite database
+     *
      * @return LiveData of List of events
      */
-    public LiveData<List<Event>> getEvents(){
+    public LiveData<List<Event>> getEvents() {
         return eventDao.getAllEvents();
     }
 
-    public void setEvent(Event event){
+    public void setEvent(Event event) {
         eventDbSize++;
         eventDao.save(event);
     }
 
-    public long getEventDbSize(){
+    public long getEventDbSize() {
         return eventDbSize;
     }
 

@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.sjani.medieve.Models.Event;
 import com.sjani.medieve.Models.User;
 
 import java.util.List;

@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import com.sjani.medieve.Models.Medication;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +19,8 @@ public class Converters {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<Medication>>() {}.getType();
+        Type listType = new TypeToken<List<Medication>>() {
+        }.getType();
 
         return gson.fromJson(data, listType);
     }

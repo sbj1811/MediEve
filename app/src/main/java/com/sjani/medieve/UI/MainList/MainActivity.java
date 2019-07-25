@@ -3,18 +3,9 @@ package com.sjani.medieve.UI.MainList;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.facebook.stetho.Stetho;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.sjani.medieve.Models.Event;
-import com.sjani.medieve.Models.User;
-import com.sjani.medieve.R;
-import com.sjani.medieve.UI.AddEvent.AddEventActivity;
-import com.sjani.medieve.UI.AddEvent.AddEventFragment;
-import com.sjani.medieve.UI.EventListViewModel;
-import com.sjani.medieve.UI.ViewModelFactory;
-import com.sjani.medieve.Utils.FactoryUtils;
-import com.sjani.medieve.Utils.ListItemListerner;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,15 +13,18 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sjani.medieve.Models.Event;
+import com.sjani.medieve.Models.User;
+import com.sjani.medieve.R;
+import com.sjani.medieve.UI.AddEvent.AddEventActivity;
+import com.sjani.medieve.UI.EventListViewModel;
+import com.sjani.medieve.UI.ViewModelFactory;
+import com.sjani.medieve.Utils.FactoryUtils;
+import com.sjani.medieve.Utils.ListItemListerner;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,11 +53,10 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
     EventListViewModel eventListViewModel;
     ListAdapter adapter;
     LinearLayoutManager layoutManager;
-    AddEventFragment eventFragment;
-    int mStackLevel = 0;
 
     /**
      * Creates the View
+     *
      * @param savedInstanceState
      */
     @Override
@@ -77,22 +70,15 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         ViewModelFactory factory = FactoryUtils.getFactory(this);
-        eventListViewModel = ViewModelProviders.of(this,factory).get(EventListViewModel.class);
+        eventListViewModel = ViewModelProviders.of(this, factory).get(EventListViewModel.class);
         eventListViewModel.getUsers().observe(this, Users -> {
-            if(Users!=null && Users.size()!=0) updateUserCardUI(Users);
+            if (Users != null && Users.size() != 0) updateUserCardUI(Users);
         });
         eventListViewModel.getEventsforUser().observe(this, Events -> {
-            if(Events!=null && Events.size()!=0) updateList(Events);
+            if (Events != null && Events.size() != 0) updateList(Events);
         });
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> showAddEvent());
-
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build()
-        );
     }
 
     private void showAddEvent() {
@@ -107,11 +93,12 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
 
     /**
      * Updates Event List Recycler View
+     *
      * @param Events List of Events
      */
     private void updateList(List<Event> Events) {
         List<Event> reversedList = new ArrayList<>();
-        for (int i = Events.size()-1; i >= 0; i--) {
+        for (int i = Events.size() - 1; i >= 0; i--) {
             reversedList.add(Events.get(i));
         }
         Collections.sort(reversedList, (o1, o2) -> {
@@ -125,44 +112,23 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
 
     /**
      * updated User Card view
+     *
      * @param Users List of Users
      */
     private void updateUserCardUI(List<User> Users) {
         userName.setText(Users.get(0).getName());
         String address = String.format("%s %s", Users.get(0).getAddress1(), Users.get(0).getAddress2());
         userAddress.setText(address);
-        String sex = Users.get(0).getSex().substring(0,1).toUpperCase()+Users.get(0).getSex().substring(1);
+        String sex = Users.get(0).getSex().substring(0, 1).toUpperCase() + Users.get(0).getSex().substring(1);
         userSex.setText(sex);
         userDob.setText(Users.get(0).getDob());
-        String disease = Users.get(0).getDisease().substring(0,1).toUpperCase()+Users.get(0).getDisease().substring(1);
+        String disease = Users.get(0).getDisease().substring(0, 1).toUpperCase() + Users.get(0).getDisease().substring(1);
         userDisease.setText(disease);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onItemClick(String name, String dateTime) {
-        String message = "You took "+name+" at "+dateTime;
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        String message = "You took " + name + " at " + dateTime;
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

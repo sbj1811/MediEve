@@ -1,27 +1,21 @@
 package com.sjani.medieve.UI.AddEvent;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.sjani.medieve.Models.Event;
 import com.sjani.medieve.Models.Medication;
 import com.sjani.medieve.Models.User;
 import com.sjani.medieve.R;
 import com.sjani.medieve.UI.EventListViewModel;
-import com.sjani.medieve.UI.MainList.MainActivity;
 import com.sjani.medieve.UI.ViewModelFactory;
 import com.sjani.medieve.Utils.FactoryUtils;
 import com.sjani.medieve.Utils.StringUtils;
@@ -73,16 +67,17 @@ public class AddEventActivity extends AppCompatActivity implements View.OnClickL
      */
     private void saveEvent() {
         ViewModelFactory factory = FactoryUtils.getFactory(this);
-        eventListViewModel = ViewModelProviders.of(this,factory).get(EventListViewModel.class);
+        eventListViewModel = ViewModelProviders.of(this, factory).get(EventListViewModel.class);
         eventListViewModel.getUsersrfromDb().observe(this, Users -> {
             String medicationName = medicationNameEV.getText().toString().trim().toLowerCase();
-            String datetime = StringUtils.ConvertToISO8601(dateEV.getText().toString().trim(),timeEV.getText().toString().trim());
-            boolean matchFound=false;
+            String datetime = StringUtils.ConvertToISO8601(dateEV.getText().toString().trim(), timeEV.getText().toString().trim());
+            boolean matchFound = false;
             Event event = new Event();
             User user = Users.get(0);
             List<Medication> medicationList = user.getMedications();
-            for (Medication medication : medicationList){
-                if (medicationName.equals(medication.getName())){
+            // LLooks for medication type and creates an event to be stored in the db
+            for (Medication medication : medicationList) {
+                if (medicationName.equals(medication.getName())) {
                     String medicationType = medication.getMedicationtype();
                     event.setMedication(medicationName);
                     event.setMedicationtype(medicationType);
@@ -92,7 +87,8 @@ public class AddEventActivity extends AppCompatActivity implements View.OnClickL
                     break;
                 }
             }
-            if(matchFound) {
+            //Store newly created event into the database
+            if (matchFound) {
                 Observable.fromCallable(() -> {
                     event.setId(eventListViewModel.getnewEventId());
                     eventListViewModel.setEventinDb(event);
@@ -101,9 +97,9 @@ public class AddEventActivity extends AppCompatActivity implements View.OnClickL
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe();
-                Toast.makeText(this,"Event Saved!",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Event Saved!", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this,"Error: Medication name does not match or complete all fields",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Error: Medication name does not match or complete all fields", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -118,7 +114,7 @@ public class AddEventActivity extends AppCompatActivity implements View.OnClickL
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
 
-
+            // Launch Date Picker Dialog
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                     (view, year, monthOfYear, dayOfMonth) -> dateEV.setText((monthOfYear + 1) + "-" + dayOfMonth + "-" + year), mYear, mMonth, mDay);
             datePickerDialog.show();

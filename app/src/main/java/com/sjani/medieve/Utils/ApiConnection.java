@@ -1,7 +1,5 @@
 package com.sjani.medieve.Utils;
 
-import android.util.Log;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -10,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiConnection {
     private static final String TAG = ApiConnection.class.getSimpleName();
 
-    public static EndpointInterface getApi(){
+    public static EndpointInterface getApi() {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);

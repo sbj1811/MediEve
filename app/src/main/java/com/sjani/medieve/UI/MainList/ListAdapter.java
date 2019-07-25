@@ -30,7 +30,7 @@ class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_item, parent, false);
         return new ListViewHolder(view);
     }
 
@@ -41,7 +41,7 @@ class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
         String medicationType = event.getMedicationtype();
         String id = String.valueOf(event.getId());
         String dateTime = event.getDatetime();
-        if(dateTime.equals("")){
+        if (dateTime.equals("")) {
             dateTime = "2015-01-01T11:32:00.000Z";
         }
         String dateTime2 = StringUtils.formatDateTime(dateTime);
@@ -59,7 +59,7 @@ class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
         return eventList.size();
     }
 
-    public void swapResults ( List<Event> result) {
+    public void swapResults(List<Event> result) {
         if (eventList == result) {
             return;
         }
@@ -92,8 +92,8 @@ class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
 
         @Override
         public void onClick(View v) {
-                Event event =  eventList.get(getAdapterPosition());
-                listItemListerner.onItemClick(event.getMedication(),StringUtils.formatDateTime(event.getDatetime()));
+            Event event = eventList.get(getAdapterPosition());
+            listItemListerner.onItemClick(event.getMedication(), StringUtils.formatDateTime(event.getDatetime()));
         }
     }
 

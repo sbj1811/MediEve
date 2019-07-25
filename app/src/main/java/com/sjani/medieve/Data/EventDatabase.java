@@ -8,7 +8,6 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.sjani.medieve.Models.Event;
-import com.sjani.medieve.Models.User;
 
 @Database(entities = {Event.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})

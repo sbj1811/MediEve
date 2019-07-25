@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -76,7 +76,6 @@
             app:layout_constraintStart_toStartOf="@+id/name_ll"
             app:layout_constraintTop_toBottomOf="@+id/name_ll"
             tools:text="9:15 AM Jan 06, 2015" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

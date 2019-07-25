@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<com.google.android.material.card.MaterialCardView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/user_card"
     android:layout_width="match_parent"
@@ -19,8 +19,8 @@
             android:id="@+id/name_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/std_padding"
             android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginTop="@dimen/std_padding"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,8 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/std_padding"
-                android:textSize="@dimen/std_font_size"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/std_font_size"
                 tools:text="Stephen A. McMillan" />
 
         </LinearLayout>
@@ -47,8 +47,8 @@
             android:id="@+id/address_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/std_padding"
             android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginTop="@dimen/std_padding"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name_ll">
@@ -64,8 +64,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/std_padding"
-                android:textSize="@dimen/std_font_size"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/std_font_size"
                 tools:text="2508 Young Road Murtaugh, ID 83344" />
 
         </LinearLayout>
@@ -74,8 +74,8 @@
             android:id="@+id/sex_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/std_padding"
             android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginTop="@dimen/std_padding"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_ll">
@@ -91,8 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/std_padding"
-                android:textSize="@dimen/std_font_size"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/std_font_size"
                 tools:text="male" />
 
         </LinearLayout>
@@ -101,8 +101,8 @@
             android:id="@+id/dob_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/std_padding"
             android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginTop="@dimen/std_padding"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sex_ll">
@@ -118,8 +118,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/std_padding"
-                android:textSize="@dimen/std_font_size"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/std_font_size"
                 tools:text="4/16/1953" />
 
         </LinearLayout>
@@ -129,10 +129,11 @@
             android:id="@+id/disease_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/std_padding"
             android:layout_marginStart="@dimen/std_margin"
-            android:layout_marginBottom="@dimen/std_margin"
+            android:layout_marginTop="@dimen/std_padding"
+            android:layout_marginBottom="@dimen/std_padding"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dob_ll">
 
@@ -147,13 +148,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/std_padding"
-                android:textSize="@dimen/std_font_size"
                 android:textColor="@android:color/black"
+                android:textSize="@dimen/std_font_size"
                 tools:text="asthma" />
 
         </LinearLayout>
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

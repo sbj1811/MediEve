@@ -12,12 +12,13 @@ import com.sjani.medieve.UI.ViewModelFactory;
 public class FactoryUtils {
     /**
      * Set up Database, Repository and ViewModel Factory
+     *
      * @param context Calling component handle
      * @return ViewModel Factory
      */
-    public static ViewModelFactory getFactory(Context context){
+    public static ViewModelFactory getFactory(Context context) {
         EventDatabase eventDatabase = EventDatabase.getInstance(context.getApplicationContext());
         UserDatabase userDatabase = UserDatabase.getInstance(context.getApplicationContext());
-        return new ViewModelFactory(new DataRepository(eventDatabase.eventDao(),userDatabase.userDao()));
+        return new ViewModelFactory(new DataRepository(eventDatabase.eventDao(), userDatabase.userDao()));
     }
 }
