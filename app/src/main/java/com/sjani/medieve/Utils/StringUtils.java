@@ -12,7 +12,7 @@ public class StringUtils {
     /**
      * Converts ISO 8601 to custom format
      *
-     * @param dateTime ISO 8601 format dtring
+     * @param dateTime ISO 8601 format string
      * @return custom date-time format string
      */
     public static String formatDateTime(String dateTime) {
@@ -27,6 +27,12 @@ public class StringUtils {
         return new SimpleDateFormat("h:mm a MMM dd, yyyy").format(date);
     }
 
+    /**
+     * Converts Time Inputs to ISO 8601 format
+     * @param dateString Date string
+     * @param timeString Time String
+     * @return ISO 8601 format string
+     */
     public static String ConvertToISO8601(String dateString, String timeString) {
         Date date = new Date();
         try {

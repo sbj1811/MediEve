@@ -59,6 +59,10 @@ class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListViewHolder> {
         return eventList.size();
     }
 
+    /**
+     * Updates new list of events
+     * @param result Updated list of events
+     */
     public void swapResults(List<Event> result) {
         if (eventList == result) {
             return;

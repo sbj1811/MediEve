@@ -5,6 +5,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Network Client
+ */
 public class ApiConnection {
     private static final String TAG = ApiConnection.class.getSimpleName();
 

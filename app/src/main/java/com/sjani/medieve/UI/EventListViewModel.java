@@ -18,22 +18,42 @@ public class EventListViewModel extends ViewModel {
         this.repository = repository;
     }
 
+    /**
+     * Gets Users from APi and store it in database
+     * @return List of Users
+     */
     public LiveData<List<User>> getUsers() {
         return repository.getUserData();
     }
 
+    /**
+     * Gets Users from database
+     * @return List of Users
+     */
     public LiveData<List<User>> getUsersrfromDb() {
         return repository.getUsersFromDb();
     }
 
+    /**
+     * Gets Events from database
+     * @return List of Events
+     */
     public LiveData<List<Event>> getEventsforUser() {
         return repository.getEvents();
     }
 
+    /**
+     * Store event in database
+     * @param event Event object
+     */
     public void setEventinDb(Event event) {
         repository.setEvent(event);
     }
 
+    /**
+     * Gets new Event id based on database size
+     * @return Id
+     */
     public long getnewEventId() {
         return repository.getEventDbSize() + 1;
     }

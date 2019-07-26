@@ -5,6 +5,9 @@ import com.sjani.medieve.Models.UserEvents;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
+/**
+ *  API Endpoint to Connect
+ */
 public interface EndpointInterface {
     String API_ENDPOINT = "https://s3-us-west-2.amazonaws.com";
 

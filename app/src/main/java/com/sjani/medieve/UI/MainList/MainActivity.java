@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements ListItemListerner
         );
     }
 
+    /**
+     * Starts AddEvent activity
+     */
     private void showAddEvent() {
         Intent intent = new Intent(this, AddEventActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

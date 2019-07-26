@@ -91,11 +91,19 @@ public class DataRepository {
         return eventDao.getAllEvents();
     }
 
+    /**
+     * Sets event in the database
+     * @param event Event object
+     */
     public void setEvent(Event event) {
         eventDbSize++;
         eventDao.save(event);
     }
 
+    /**
+     *  Gets number of Events in database
+     * @return database size
+     */
     public long getEventDbSize() {
         return eventDbSize;
     }
