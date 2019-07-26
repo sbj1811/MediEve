@@ -12,8 +12,10 @@ Displays user medical info and a list of medication events. It also allows the u
 	* Timestamp
 * The event list should be scrollable and sorted by date with the most recent event appearing at the top of the list.
 * The app lets input a new event and display it in the existing list.
-Input fields should include the following:
+* Input fields includes the following:
 	* Medication name
 	* Timestamp
 	* Medication type is derived from the medication name that is selected.
-* New events do not persist between app sessions. 
+* New events do not persist between app sessions.
+
+###### Sample tests for StringUtils and User database included.
